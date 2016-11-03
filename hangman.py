@@ -1,17 +1,13 @@
+#hangman.py needs "hang.txt" file to work properly
 import random
 import os
 import time
 
 CAPITOLS_QUANTITY = 51
 UPPER_LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ "
-HEADER = '\033[95m'
 OKBLUE = '\033[94m'
-OKGREEN = '\033[92m'
-WARNING = '\033[93m'
 FAIL = '\033[91m'
 ENDC = '\033[0m'
-BOLD = '\033[1m'
-UNDERLINE = '\033[4m'
 capitols = ["Tirana","Andorra la Vella","Yerevan","Vienna","Baku","Minsk","Brussels","Sarajevo","Sofia","Zagreb","Nicosia","Prague","Copenhagen",
 "Tallinn","Helsinki","Paris","Tbilisi","Berlin","Athens","Budapest","Reykjavik","Dublin","Rome","Astana","Pristina","Riga","Vaduz","Vilnius",
 "Luxembourg","Skopje","Valletta","Chisinau","Monaco","Podgorica","Amsterdam","Oslo","Warsaw","Lisbon","Bucharest","Moscow","San Marino","Belgrade",
@@ -90,14 +86,14 @@ def main():
     dashes, health, bad_char_list = [], 5, []
     time_of_start = time.time()
     pics_list = import_pics()
-    (picked_capitol, capitol_len) = pick_capitol()
-    picked_capitol_in_list = capitol_to_list_convert(picked_capitol, capitol_len)
+    (picked_capitol, capitol_len) = pick_capitol()  #picking random capital
+    picked_capitol_in_list = capitol_to_list_convert(picked_capitol, capitol_len)  #and convert it to list
     dashes=init_dashes(dashes, capitol_len)
     while not (dashes == picked_capitol_in_list or health<1):
         cls()
-        print(picked_capitol)
+        #print(picked_capitol)  #just for testing purpose (shows answer)
         show_game(dashes,bad_char_list,health, pics_list)
-        question=input("\nWould you like to guess: \n1) a letter \n2) whole word(s)\n(type \"x\" to exit)\n\nYour answer: ")
+        question=input("\nWhat would you like to guess: \n1) a letter \n2) whole word(s)\n(type \"x\" to exit)\n\nYour answer: ")
         if question == "x":
             print("See you soon!")
             exit()
@@ -131,9 +127,11 @@ def main():
         show_game(picked_capitol_in_list,bad_char_list,health, pics_list)
         if health < 1:
             print(FAIL+"You loose!"+ENDC, end="")
-            print(" ... wasting {0:4.2f} sec. of your time...".format(timer(time_of_start)))
+            print(" ... such a waste {0:4.2f} sec. of your time...".format(timer(time_of_start)))
         else:
             print(OKBLUE+"Your answer is correct: {0}. You made it in {1:4.2f} sec.!".format(picked_capitol, timer(time_of_start)))
             print(ENDC)
+
+
 if __name__ == "__main__":
     main()
