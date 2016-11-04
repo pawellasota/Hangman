@@ -3,7 +3,7 @@ import random
 import os
 import time
 
-UPPER_LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+UPPER_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
 OKBLUE = '\033[94m'
 FAIL = '\033[91m'
 ENDC = '\033[0m'
@@ -21,7 +21,7 @@ def import_pics():
     row = ""
     with open("hang.txt","r") as txt_file:
         for line in txt_file:
-            row+=line
+            row += line
             if line[0] == separator:
                 row = row[:-2] #cut '#' from end of string
                 pics_list.append(row)
@@ -88,7 +88,7 @@ def main():
     pics_list = import_pics()
     (picked_capitol, capitol_len) = pick_capitol()  #picking random capital
     picked_capitol_in_list = capitol_to_list_convert(picked_capitol, capitol_len)  #and convert it to list
-    dashes=init_dashes(dashes, capitol_len)
+    dashes = init_dashes(dashes, capitol_len)
     while not (dashes == picked_capitol_in_list or health<1):
         cls()
         show_game(dashes,bad_char_list,health, pics_list)
@@ -103,7 +103,7 @@ def main():
                 dashes=picked_capitol_in_list[:]
                 continue
             else:
-                health-=1
+                health -= 1
                 input("Your answer is incorrect\nEnter to continue")
         elif question == "1":
             ask = None
@@ -111,7 +111,7 @@ def main():
                 ask = input("Guess a letter: ").upper()
             else:
                 if ask not in picked_capitol:
-                    health-=1
+                    health -= 1
                     if ask not in bad_char_list:
                         bad_char_list.append(ask)
                     else:
