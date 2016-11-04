@@ -92,7 +92,7 @@ def main():
     while not (dashes == picked_capitol_in_list or health<1):
         cls()
         show_game(dashes,bad_char_list,health, pics_list)
-        print(picked_capitol)  #just for testing purpose (shows answer)
+        #print(picked_capitol)  #just for testing purpose (shows answer)
         question=input("\nWhat would you like to guess: \n1) a letter \n2) whole word(s)\n(type \"x\" to exit)\n\nYour answer: ")
         if question == "x":
             print("See you soon!")
