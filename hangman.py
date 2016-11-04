@@ -3,7 +3,6 @@ import random
 import os
 import time
 
-CAPITOLS_QUANTITY = 51
 UPPER_LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ "
 OKBLUE = '\033[94m'
 FAIL = '\033[91m'
@@ -12,6 +11,7 @@ capitols = ["Tirana","Andorra la Vella","Yerevan","Vienna","Baku","Minsk","Bruss
 "Tallinn","Helsinki","Paris","Tbilisi","Berlin","Athens","Budapest","Reykjavik","Dublin","Rome","Astana","Pristina","Riga","Vaduz","Vilnius",
 "Luxembourg","Skopje","Valletta","Chisinau","Monaco","Podgorica","Amsterdam","Oslo","Warsaw","Lisbon","Bucharest","Moscow","San Marino","Belgrade",
 "Bratislava","Ljubljana","Madrid","Stockholm","Bern","Ankara","Kyiv","London","Vatican City"]
+CAPITOLS_QUANTITY = len(capitols)
 
 
 def import_pics():
@@ -32,7 +32,7 @@ def import_pics():
 
 def pick_capitol():
     """Returns random capitol name and lenght of it"""
-    capitol_nr = random.randint(0, CAPITOLS_QUANTITY)
+    capitol_nr = random.randint(0, CAPITOLS_QUANTITY-1)
     return (capitols[capitol_nr].upper(), len(capitols[capitol_nr]))
 
 
@@ -91,8 +91,8 @@ def main():
     dashes=init_dashes(dashes, capitol_len)
     while not (dashes == picked_capitol_in_list or health<1):
         cls()
-        #print(picked_capitol)  #just for testing purpose (shows answer)
         show_game(dashes,bad_char_list,health, pics_list)
+        print(picked_capitol)  #just for testing purpose (shows answer)
         question=input("\nWhat would you like to guess: \n1) a letter \n2) whole word(s)\n(type \"x\" to exit)\n\nYour answer: ")
         if question == "x":
             print("See you soon!")
