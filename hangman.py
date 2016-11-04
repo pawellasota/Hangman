@@ -26,7 +26,7 @@ def import_pics():
                 row = row[:-2] #cut '#' from end of string
                 pics_list.append(row)
                 row = ""
-    pics_list = pics_list[::-1]
+    pics_list = pics_list[::-1]  #list reversing
     return pics_list
 
 
@@ -83,7 +83,7 @@ def cls():
 
 
 def main():
-    dashes, health, bad_char_list = [], 5, []
+    dashes, health, bad_char_list = [], 5, []   #dashes - list with hidden chars ("-") (after good answer filled with visible chars)
     time_of_start = time.time()
     pics_list = import_pics()
     (picked_capitol, capitol_len) = pick_capitol()  #picking random capital
@@ -92,7 +92,7 @@ def main():
     while not (dashes == picked_capitol_in_list or health<1):
         cls()
         show_game(dashes,bad_char_list,health, pics_list)
-        #print(picked_capitol)  #just for testing purpose (shows answer)
+        print(picked_capitol)  #just for testing purpose (shows answer)
         question=input("\nWhat would you like to guess: \n1) a letter \n2) whole word(s)\n(type \"x\" to exit)\n\nYour answer: ")
         if question == "x":
             print("See you soon!")
